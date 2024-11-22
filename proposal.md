@@ -1,15 +1,18 @@
 # Project Description
 
-game with storyline, autism mutation detection, making art, making a grocery mart game (costco), aesthetic music reccomendatin system, or like papa's cupakeria
+A game with a stoyline where the player goes through quests (levels) to win the game.
 
 ## Needs to Have List
+
 - start screen
-- storyline with game ending
+- storyline for game ending
+- at least 3 levels (quests)
 - music/sound effects
-- chapters for different levels
+- character dialogue
 
 
 ## Nice to Have List
 
-- other thing
-- yet one more thing
+- different characters for each level
+- different settings/things character is allowed to do for night versus day
+- instead of just text bubbles, characters also speak out loud
