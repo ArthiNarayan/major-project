@@ -1,14 +1,15 @@
 # Project Description
 
-A game with a stoyline where the player goes through quests (levels) to win the game.
+A game with a storyline where the player goes through quests (levels) to win the game.
 
 ## Needs to Have List
 
 - start screen
 - storyline for game ending
 - at least 3 levels (quests)
+    - 
 - music/sound effects
-- character dialogue
+- character dialogue (text bubbles)
 
 
 ## Nice to Have List
@@ -16,3 +17,4 @@ A game with a stoyline where the player goes through quests (levels) to win the 
 - different characters for each level
 - different settings/things character is allowed to do for night versus day
 - instead of just text bubbles, characters also speak out loud
+- tutorial level
