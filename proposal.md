@@ -7,7 +7,7 @@ A game with a storyline where the player goes through quests (levels) to win the
 - start screen
 - storyline for game ending
 - at least 3 levels (quests)
-    - 
+    - have to make quests/levels part more clear
 - music/sound effects
 - character dialogue (text bubbles)
 
