@@ -3,19 +3,35 @@
 // Date
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-let nightstart;
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-}
+
+// Set state to enable start screen
+let state = "start";
+
+// Set image variables 
+
+let nightStart;
+let day;
+
+
+
 
 function preload() {
-  nightStart = loadImage("nightStart.gif");
+  // Load all image files
+  nightStart = loadImage("nightstart.gif");
+
+}
+
+function setup() {
+  // Set canvas size based on window dimensions
+  createCanvas(windowWidth, windowHeight);
+
+
 }
 
 function draw() {
-  background(220);
+  // Switch from start screen to animal or plant cell diagram
+  swapState();
 
 }
 
@@ -27,5 +43,6 @@ function swapState() {
 }
 
 function startScreen() {
-  image("nightStart", 0, 0, windowWidth, windowHeight);
+  // Display start screen and images
+  image(nightStart, 0, 0, windowWidth, windowHeight);
 }
