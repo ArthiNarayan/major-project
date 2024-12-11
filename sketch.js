@@ -255,7 +255,7 @@ function nextDialogue(newDialogue) {
 
 function homeBase() {
   image(room, 0, 0, windowWidth, windowHeight);
-  image(book, 3, 3, book.width * 0.1, book.height * 0.1);
+  image(book, 9, 9, book.width * 0.12, book.height * 0.12);
   image(cd, 1170, -14, cd.width * 0.22, cd.height * 0.22);
   image(cake, 1182, 67, cake.width * 0.17, cake.height * 0.17);
 
@@ -274,9 +274,22 @@ function homeBase() {
     // After dialogue1 is complete, switch to dialogue2
     nextDialogue(dialogue3);
   }
+
+  // If book icon is clicked, go to quests function
+  
 }
 
-function levelOne() {
+function quests(x, y, width, height) {
+  noStroke();
+  fill(50, 50, 50, 200); // Semi-transparent gray
+  rect(x, y, width, height, 10); // Rounded box
 
+}
+
+
+function levelOne() {
+  if (mouseIsPressed && mouseX > 9 && mouseX < 9 + book.width * 0.12 && mouseY > 12 && mouseY < 12 + book.height * 0.12) {
+    state = "home";
+  }
 }
 
