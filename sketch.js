@@ -152,15 +152,18 @@ let nightStart;
 let dayStart;
 let play;
 let room;
+let book;
+let cd;
+let cake;
 
 let displayMode;
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 3.5; 
+let typingSpeed = 3; 
 let dialogue1 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
-let dialogue2 = "The world is your oyster, and there are spirits to help, challenges to overcome, and mysteries to uncover.";
-let dialogue3 = "To get started, click on the scroll icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the record player, or fuel up with a snack. Have fun!"
+let dialogue2 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
+let dialogue3 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the CD player, or fuel up with a snack. Have fun!"
 let dialogueComplete = false;
 let currentDialogue = dialogue1;
 
@@ -170,6 +173,9 @@ function preload() {
   dayStart = loadImage("daystart.gif");
   play = loadImage("play.png");
   room = loadImage("room.gif");
+  book = loadImage("book.png");
+  cd = loadImage("cd.png");
+  cake = loadImage("cake.png");
 }
 
 function setup() {
@@ -227,6 +233,7 @@ function displayTypingDialogue(x, y, width, height, dialogue, frameCounter, typi
   charIndex = min(charIndex, dialogue.length);
 
   // Draw the dialogue box
+  noStroke();
   fill(50, 50, 50, 200); // Semi-transparent gray
   rect(x, y, width, height, 10); // Rounded box
 
@@ -248,6 +255,9 @@ function nextDialogue(newDialogue) {
 
 function homeBase() {
   image(room, 0, 0, windowWidth, windowHeight);
+  image(book, 3, 3, book.width * 0.1, book.height * 0.1);
+  image(cd, 1170, -14, cd.width * 0.22, cd.height * 0.22);
+  image(cake, 1182, 67, cake.width * 0.17, cake.height * 0.17);
 
   // Example of how to call the dialogue
   if (!dialogueComplete) {
