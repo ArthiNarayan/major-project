@@ -6,8 +6,13 @@ A game with a storyline where the player goes through quests (levels) to win the
 
 - start screen
 - storyline for game ending
+- home base (room) where player gets quest instructions
+    - has a cd icon where player can listen to playlists
+    - food icon where player can have snacks
 - at least 3 levels (quests)
-    - have to make quests/levels part more clear
+    - level one: kelp forest underwater with lost item
+    - level two: flying in the sky to deliver message to house on mountain
+    - level three: travelling to gateway of afterlife (river) which is underground
 - music/sound effects
 - character dialogue (text bubbles)
 
