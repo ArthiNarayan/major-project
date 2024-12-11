@@ -6,12 +6,14 @@
 
 
 // Set state to enable start screen
-let state = "daystart";
+let state = "start";
+let time = "day";
 
 // Set image variables 
 
 let nightStart;
 let dayStart;
+let play;
 
 let displayMode;
 
@@ -23,6 +25,7 @@ function preload() {
   // Load all image files
   nightStart = loadImage("nightstart.gif");
   dayStart = loadImage("daystart.gif");
+  play = loadImage("play.png");
 
 }
 
@@ -30,7 +33,7 @@ function setup() {
   // Set canvas size based on window dimensions
   createCanvas(windowWidth, windowHeight);
 
-  displayMode = createButton("")
+  displayMode = createButton("NIGHT/DAY")
 
 
 }
@@ -42,12 +45,10 @@ function draw() {
 
 function swapState() {
   // Display start screen //OPTION TO SWITHC FROM NIGHT MODE TO DAY NODE 
-  if (state === "nightstart") {
-    nightStartScreen();
+  if (state === "start") {
+    startScreen();
   }
-  else if (state === "daystart") {
-    dayStartScreen();
-  }
+
 }
 
 function nightStartScreen() {
@@ -58,4 +59,16 @@ function nightStartScreen() {
 function dayStartScreen() {
   // Display start screen and images
   image(dayStart, 0, 0, windowWidth, windowHeight);
+}
+
+function startScreen() {
+  if (state === "start" && time === "night") {
+    image(nightStart, 0, 0, windowWidth, windowHeight);
+  }
+  else if (state === "start" && time === "day") {
+    image(dayStart, 0, 0, windowWidth, windowHeight);  
+  }
+  image(play, 455, 230, play.width * 0.5, play.height * 0.5);
+
+
 }
