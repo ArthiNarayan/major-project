@@ -156,7 +156,9 @@ let book;
 let cd;
 let cake;
 
+
 let displayMode;
+let heartCount = 0;
 
 // Home base dialogue
 let frameCounter = 0;
@@ -194,10 +196,12 @@ function swapState() {
   // Display start screen //OPTION TO SWITHC FROM NIGHT MODE TO DAY NODE 
   if (state === "start") {
     startScreen();
-  } else if (state === "home") {
+  } 
+  else if (state === "home") {
     homeBase();
-  } else if (state === "one") {
-    levelOne();
+  } 
+  else if (state === "one") {
+    quests();
   }
 }
 
@@ -214,7 +218,8 @@ function dayStartScreen() {
 function startScreen() {
   if (state === "start" && time === "night") {
     image(nightStart, 0, 0, windowWidth, windowHeight);
-  } else if (state === "start" && time === "day") {
+  } 
+  else if (state === "start" && time === "day") {
     image(dayStart, 0, 0, windowWidth, windowHeight);  
   }
   image(play, 455, 230, play.width * 0.5, play.height * 0.5);
@@ -276,7 +281,9 @@ function homeBase() {
   }
 
   // If book icon is clicked, go to quests function
-  
+  if (mouseIsPressed && mouseX > 9 && mouseX < 9 + play.width * 0.12 && mouseY > 9 && mouseY < 9 + play.height * 0.12) {
+    state = "home";
+  }
 }
 
 function quests(x, y, width, height) {
@@ -284,12 +291,11 @@ function quests(x, y, width, height) {
   fill(50, 50, 50, 200); // Semi-transparent gray
   rect(x, y, width, height, 10); // Rounded box
 
+
+
+
 }
 
 
 function levelOne() {
-  if (mouseIsPressed && mouseX > 9 && mouseX < 9 + book.width * 0.12 && mouseY > 12 && mouseY < 12 + book.height * 0.12) {
-    state = "home";
-  }
 }
-
