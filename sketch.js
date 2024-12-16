@@ -288,8 +288,9 @@ function homeBase() {
 
 function quests(x, y, width, height) {
   noStroke();
-  fill(50, 50, 50, 200); // Semi-transparent gray
+  fill(50, 50, 50, 100); // Semi-transparent gray
   rect(x, y, width, height, 10); // Rounded box
+  
 
 
 
@@ -298,4 +299,6 @@ function quests(x, y, width, height) {
 
 
 function levelOne() {
+  rect(10, 10, 20, 20);
+
 }
