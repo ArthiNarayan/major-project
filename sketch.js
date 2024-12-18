@@ -228,6 +228,10 @@ function startScreen() {
   if (mouseIsPressed && mouseX > 455 && mouseX < 455 + play.width * 0.5 && mouseY > 230 && mouseY < 230 + play.height * 0.5) {
     state = "home";
   }
+
+  if (state === "quests") {
+    quests();
+  }
 }
 
 function displayTypingDialogue(x, y, width, height, dialogue, frameCounter, typingSpeed) {
@@ -282,7 +286,7 @@ function homeBase() {
 
   // If book icon is clicked, go to quests function
   if (mouseIsPressed && mouseX > 9 && mouseX < 9 + play.width * 0.12 && mouseY > 9 && mouseY < 9 + play.height * 0.12) {
-    state = "home";
+    state = "quests";
   }
 }
 
@@ -300,5 +304,9 @@ function quests(x, y, width, height) {
 
 function levelOne() {
   rect(10, 10, 20, 20);
+
+}
+
+function {
 
 }
