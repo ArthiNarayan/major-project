@@ -381,7 +381,7 @@ function swapState() {
   else if (state === "home") {
     homeBase();
   } 
-  else if (state === "one") {
+  else if (state === "quests") {
     quests();
   }
 }
@@ -441,14 +441,17 @@ function homeBase() {
   }
 
   if (mouseIsPressed && mouseX > 9 && mouseX < 9 + book.width * 0.12 && mouseY > 9 && mouseY < 9 + book.height * 0.12) {
-    state = "one";
+    state = "quests";
   }
 }
 
 function quests() {
   fill(50, 50, 50, 100);
-  rect(50, 50, 300, 200, 10);
-  textSize(24);
+  rect(50, 50, 360, 100, 10);
+  textSize(15);
   fill(255);
-  text("Quests coming soon!", 70, 90);
+  text("Quest 1                      Quest 2                      Quest 3", 60, 55);
+  
+
+
 }

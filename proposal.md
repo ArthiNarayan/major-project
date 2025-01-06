@@ -13,7 +13,7 @@ A game with a storyline where the player goes through quests (levels) to win the
     - level one: kelp forest underwater with lost item
     - level two: flying in the sky to deliver message to house on mountain
     - level three: travelling to gateway of afterlife (river) which is underground
-- Heart points --> given through food, listening to music, or hugs from spiris, and gives you hints on quests
+- Heart points --> given through food, listening to music, or hugs from spirits, and gives you hints on quests
 - music/sound effects
 - character dialogue (text bubbles)
 
