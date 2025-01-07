@@ -450,7 +450,7 @@ function quests() {
   rect(50, 50, 360, 100, 10);
   textSize(15);
   fill(255);
-  text("Quest 1                      Quest 2                      Quest 3", 60, 55);
+  text("Quest 1                     Quest 2                      Quest 3", 60, 55);
   
 
 
