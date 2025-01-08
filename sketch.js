@@ -356,13 +356,14 @@ function preload() {
   book = loadImage("book.png");
   cd = loadImage("cd.png");
   cake = loadImage("cake.png");
+  q1 = loadImage("q1.jpg");
 }
 
 function setup() {
   // Set canvas size based on window dimensions
   createCanvas(windowWidth, windowHeight);
   displayMode = createButton("NIGHT/DAY");
-  displayMode.position(20, 20);
+  displayMode.position(67, 20);
   displayMode.mousePressed(() => {
     time = (time === "day") ? "night" : "day";
   });
@@ -450,7 +451,10 @@ function quests() {
   rect(50, 50, 360, 100, 10);
   textSize(15);
   fill(255);
-  text("Quest 1                     Quest 2                      Quest 3", 60, 55);
+  text(" Quest 1                     Quest 2                      Quest 3", 60, 55);
+  //Quest 1 Icon
+  image(q1, 60, 80, q1.width * 0.08, q1.height * 0.08);
+  
   
 
 
