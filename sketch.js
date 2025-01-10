@@ -28,21 +28,19 @@ let heartCount = 0;
 // Home base dialogue
 let frameCounter = 0;
 let typingSpeed = 3; 
-let dialogue1 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
-let dialogue2 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
-let dialogue3 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the CD player, or fuel up with a snack. Have fun!";
+let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
+let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
+let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the CD player, or fuel up with a snack. Have fun!";
 let dialogueComplete = false;
-let currentDialogue = dialogue1;
+let currentDialogue = dialogue11;
 
 // Variables for Moira's dialogue
-let moiraDialogue = [
-  "Hello, dear traveler. My name is Moira.",
-  "This part of the ocean holds a special place in my heart. It’s where my loved one and I shared our first date.",
-  "We walked along the shore, collecting seashells and talking about all the adventures we’d have together.",
-  "Now, I wish to send something back to remind them of that day. Can you help me choose the right item?",
-];
-let moiraDialogueIndex = 0;
-let dialogueCompleteMoira = false;
+let dialogue21 = "Hello, dear traveller. My name is Moira.";
+let dialogue22 = "The ocean holds a special place in my heart. It’s where my loved one and I shared our first date.";
+let dialogue23 = "We walked along the shore, collecting seashells and talking about all the adventures we’d have together.";
+let dialogue24 = "Now, I wish to send something back to remind them of that day. Can you help me choose the right item?";
+let currentQuestDialogue = dialogue21;
+
 
 
 
@@ -141,10 +139,10 @@ function homeBase() {
     frameCounter++;
   }
 
-  if (dialogueComplete && currentDialogue === dialogue1) {
-    nextDialogue(dialogue2);
-  } else if (dialogueComplete && currentDialogue === dialogue2 && currentDialogue !== dialogue3) {
-    nextDialogue(dialogue3);
+  if (dialogueComplete && currentDialogue === dialogue11) {
+    nextDialogue(dialogue12);
+  } else if (dialogueComplete && currentDialogue === dialogue12 && currentDialogue !== dialogue13) {
+    nextDialogue(dialogue13);
   }
 
   if (mouseIsPressed && mouseX > 9 && mouseX < 9 + book.width * 0.12 && mouseY > 9 && mouseY < 9 + book.height * 0.12) {
@@ -168,12 +166,32 @@ function quests() {
   }
 }
 
+function nextQuestDialogue(newDialogue) {
+  currentQuestDialogue = newDialogue;
+  frameCounter = 0;
+  dialogueComplete = false;
+}
+
 function quest1() {
   // Set background
   image(ocean, 0, 0, windowWidth, windowHeight);
 
   // Character Moira
   image(moira, 9, 9, moira.width * 0.12, moira.height * 0.12);
-  
-}
 
+  if (!dialogueComplete) {
+    dialogueComplete = displayTypingDialogue(50, 450, 700, 100, currentQuestDialogue, frameCounter, typingSpeed);
+    frameCounter++;
+  }
+
+  if (dialogueComplete && currentQuestDialogue === dialogue21) {
+    nextQuestDialogue(dialogue22);
+  } 
+  else if (dialogueComplete && currentQuestDialogue === dialogue22 && currentQuestDialogue !== dialogue23) {
+    nextQuestDialogue(dialogue23);
+  }
+  else if (dialogueComplete && currentQuestDialogue === dialogue23 && currentQuestDialogue !== dialogue24) {
+    nextQuestDialogue(dialogue24);
+  }
+
+}

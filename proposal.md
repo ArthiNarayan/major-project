@@ -23,4 +23,5 @@ A game with a storyline where the player goes through quests (levels) to win the
 - different settings/things character is allowed to do for night versus day
 - instead of just text bubbles, characters also speak out loud
 - have transitions when changing states
+- icon to go back to home screen
 - Heart points --> given through food, listening to music, or hugs from spirits, and gives you hints on quests
