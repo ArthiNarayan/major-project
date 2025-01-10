@@ -176,8 +176,8 @@ function quest1() {
   // Set background
   image(ocean, 0, 0, windowWidth, windowHeight);
 
-  // Character Moira
-  image(moira, 9, 9, moira.width * 0.12, moira.height * 0.12);
+  // Display Moira
+  image(moira, 600, 10, moira.width * 0.7, moira.height * 0.7);
 
   if (!dialogueComplete) {
     dialogueComplete = displayTypingDialogue(50, 450, 700, 100, currentQuestDialogue, frameCounter, typingSpeed);
