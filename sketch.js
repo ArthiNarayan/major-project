@@ -18,6 +18,9 @@ let room;
 let book;
 let cd;
 let cake;
+let q1;
+let ocean;
+let moira;
 
 let displayMode;
 let heartCount = 0;
@@ -31,6 +34,20 @@ let dialogue3 = "To get started, click on the book icon at the top left. But bef
 let dialogueComplete = false;
 let currentDialogue = dialogue1;
 
+// Variables for Moira's dialogue
+let moiraDialogue = [
+  "Hello, dear traveler. My name is Moira.",
+  "This part of the ocean holds a special place in my heart. It’s where my loved one and I shared our first date.",
+  "We walked along the shore, collecting seashells and talking about all the adventures we’d have together.",
+  "Now, I wish to send something back to remind them of that day. Can you help me choose the right item?",
+];
+let moiraDialogueIndex = 0;
+let dialogueCompleteMoira = false;
+
+
+
+
+
 function preload() {
   // Load all image files
   nightStart = loadImage("nightstart.gif");
@@ -41,6 +58,8 @@ function preload() {
   cd = loadImage("cd.png");
   cake = loadImage("cake.png");
   q1 = loadImage("q1.jpg");
+  ocean = loadImage("ocean.gif");
+  moira = loadImage("moira.png");
 }
 
 function setup() {
@@ -54,7 +73,7 @@ function setup() {
 }
 
 function draw() {
-  // Switch from start screen to animal or plant cell diagram
+  // Switch between start/home/quest screens
   swapState();
 }
 
@@ -69,7 +88,7 @@ function swapState() {
   else if (state === "quests") {
     quests();
   }
-  else if (state = "quest1") {
+  else if (state === "quest1") {
     quest1();
   }
 }
@@ -150,6 +169,11 @@ function quests() {
 }
 
 function quest1() {
+  // Set background
+  image(ocean, 0, 0, windowWidth, windowHeight);
+
+  // Character Moira
+  image(moira, 9, 9, moira.width * 0.12, moira.height * 0.12);
   
 }
 
