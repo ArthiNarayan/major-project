@@ -216,7 +216,7 @@ let heartCount = 0;
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 2.41; 
+let typingSpeed = 2.5; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
 let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the CD player, or fuel up with a snack. Have fun!";
@@ -264,14 +264,21 @@ function swapState() {
   // Display start screen or other states
   if (state === "start") {
     startScreen();
-  } else if (state === "home") {
+  } 
+  else if (state === "home") {
     homeBase();
-  } else if (state === "quests") {
+  } 
+  else if (state === "quests") {
     quests();
-  } else if (state === "quest1") {
+  } 
+  else if (state === "quest1intro") {
+    quest1intro();
+  }
+  else if (state === "quest1") {
     quest1();
   }
 }
+
 
 function startScreen() {
   if (time === "night") {
@@ -365,14 +372,14 @@ function quests() {
   // Quest 1 Icon
   image(q1, 60, 80, q1.width * 0.08, q1.height * 0.08);
   if (mouseIsPressed && mouseX > 60 && mouseX < 60 + q1.width * 0.08 && mouseY > 80 && mouseY < 80 + q1.height * 0.08) {
-    state = "quest1";
+    state = "quest1intro";
     showDialogueBox = true; // Reset for the quest dialogues
     currentQuestDialogue = dialogue21; // Ensure correct dialogue sequence starts
     frameCounter = 0; // Reset typing
   }
 }
 
-function quest1() {
+function quest1intro() {
   image(ocean, 0, 0, windowWidth, windowHeight);
   image(moira, 780, 150, moira.width * 0.7, moira.height * 0.7);
 
@@ -398,9 +405,19 @@ function quest1() {
         frameCounter = 0;
       } else if (currentQuestDialogue === dialogue24) {
         showDialogueBox = false; // Hide the dialogue box after the last dialogue
+        state = "quest1";
       }
     }
   }
+}
+
+function quest1() {
+  // set background
+  image(ocean, 0, 0, windowWidth, windowHeight);
+
+  // three options
+  
+
 }
 
 
