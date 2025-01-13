@@ -11,7 +11,7 @@ let state = "start";
 let time = "day";
 
 // Set image variables 
-let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home;
+let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home, city, q2;
 
 let displayMode;
 let heartCount = 0;
@@ -49,6 +49,8 @@ function preload() {
   chest = loadImage("chest.png");
   message = loadImage("message.png");
   home = loadImage("home.png");
+  city = loadImage("city.gif");
+  q2 = loadImage("tree.png");
 }
 
 let choiceMade = false;  // Track if a choice has been made
@@ -93,6 +95,13 @@ function swapState() {
   else if (state === "quest1") {
     quest1();
   }
+  else if (state === "quest2intro") {
+    quest2intro();
+  }
+  else if (state === "quest2") {
+    quest2();
+  }
+
 }
 
 
@@ -192,10 +201,10 @@ function homeIcon() {
 
 function quests() {
   fill(50, 50, 50, 100);
-  rect(50, 50, 360, 100, 10);
+  rect(50, 50, 168, 100, 10);
   textSize(15);
   fill(255);
-  text(" Quest 1                     Quest 2                      Quest 3", 60, 55);
+  text(" Quest 1        Quest 2 ", 60, 55);
 
   // Quest 1 Icon
   image(q1, 60, 80, q1.width * 0.08, q1.height * 0.08);
@@ -205,6 +214,13 @@ function quests() {
     currentQuestDialogue = dialogue21; // Ensure correct dialogue sequence starts
     frameCounter = 0; // Reset typing
   }
+
+  // Quest 2 Icon
+  image(q2, 147, 80, q2.width * 0.048, q2.height * 0.048);
+  if (mouseIsPressed && mouseX > 147 && mouseX < 147 + q1.width * 0.048 && mouseY > 80 && mouseY < 80 + q1.height * 0.048) {
+    state = "quest2intro";
+  }
+
 }
 
 function quest1intro() {
@@ -309,4 +325,10 @@ function checkChoice() {
       choiceFeedback = "A message in a bottle is a nice gesture, but it’s not as meaningful. Try again!";
     }
   }
+}
+
+function quest2intro() {
+  // Set background image
+  image(city, 0, 0, windowWidth, windowHeight);
+
 }
