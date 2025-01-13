@@ -58,7 +58,7 @@ function setup() {
   // Set canvas size based on window dimensions
   createCanvas(windowWidth, windowHeight);
   displayMode = createButton("NIGHT/DAY");
-  displayMode.position(67, 20);
+  displayMode.position(10, 10);
   displayMode.mousePressed(() => {
     time = (time === "day") ? "night" : "day";
   });
@@ -67,6 +67,13 @@ function setup() {
 function draw() {
   // Switch between start/home/quest screens
   swapState();
+
+  // Adjust button visibility based on the state
+  if (state === "start") {
+    displayMode.show(); // Show the button on the start screen
+  } else {
+    displayMode.hide(); // Hide the button on all other screens
+  }
 }
 
 function swapState() {
@@ -143,7 +150,7 @@ function homeBase() {
   image(room, 0, 0, windowWidth, windowHeight);
   image(book, 9, 9, book.width * 0.12, book.height * 0.12);
   image(cd, 1170, -14, cd.width * 0.22, cd.height * 0.22);
-  image(cake, 1182, 67, cake.width * 0.17, cake.height * 0.17);
+  image(cake, 1186, 67, cake.width * 0.17, cake.height * 0.17);
 
   if (showDialogueBox) {
     dialogueComplete = displayTypingDialogue(50, 450, 700, 100, currentDialogue, frameCounter, typingSpeed);
