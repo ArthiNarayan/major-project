@@ -14,11 +14,11 @@ let time = "day";
 let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home, city, q2;
 
 let displayMode;
-let heartCount = 0;
+
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 3; 
+let typingSpeed = 0; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
 let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the CD player, or fuel up with a snack. Have fun!";
@@ -38,6 +38,16 @@ let dialogue31 = "Welcome, kind soul. I am Melody, a musician who loved the city
 let dialogue32 = "The city was where I performed my favourite songs, under the falling blossoms.";
 let dialogue33 = "Before I move on, I wish to leave a message for someone dear to me.";
 let dialogue34 = "Will you help me put together the words I never said?";
+
+let fragments = [
+  { text: "I never", x: 100, y: 200 },
+  { text: "knew how much", x: 400, y: 300 },
+  { text: "your presence", x: 700, y: 400 },
+  { text: "shaped my life.", x: 500, y: 100 },
+];
+let draggingIndex = null;
+
+
 
 function preload() {
   // Load all image files
@@ -336,15 +346,6 @@ function checkChoice() {
   }
 }
 
-// function quest2intro() {
-//   // Set background image
-//   image(city, 0, 0, windowWidth, windowHeight);
-
-// }
-
-// function quest2() {
-
-// }
 
 function quest2intro() {
   image(city, 0, 0, windowWidth, windowHeight);
@@ -378,4 +379,82 @@ function quest2intro() {
   // Display the home icon
   homeIcon();
 }
+
+function quest2() {
+  image(city, 0, 0, windowWidth, windowHeight);
+
+  // Draw fragments
+  for (let i = 0; i < fragments.length; i++) {
+    fill(255, 200);
+    rect(fragments[i].x, fragments[i].y, 200, 50, 10);
+    fill(0);
+    textSize(18);
+    textAlign(CENTER, CENTER);
+    text(fragments[i].text, fragments[i].x + 100, fragments[i].y + 25);
+  }
+
+  // Check if all fragments are in the correct order
+  if (checkOrder()) {
+    fill(50, 50, 50, 200);
+    rect(50, 450, 700, 100, 10); // Background for feedback box
+    fill(255);
+    textSize(20);
+    textAlign(LEFT, TOP);
+    text("You did it! The message is complete. Thank you!", 60, 460, 680, 90); // Display the feedback message
+
+    // Add logic to proceed to the next state or quest if needed
+  }
+
+  // Display the home icon
+  homeIcon();
+}
+
+function mousePressed() {
+  // Check if the mouse is over any fragment to start dragging
+  for (let i = 0; i < fragments.length; i++) {
+    if (
+      mouseX > fragments[i].x &&
+      mouseX < fragments[i].x + 200 &&
+      mouseY > fragments[i].y &&
+      mouseY < fragments[i].y + 50
+    ) {
+      draggingIndex = i;
+      break;
+    }
+  }
+}
+
+function mouseDragged() {
+  // Move the selected fragment with the mouse
+  if (draggingIndex !== null) {
+    fragments[draggingIndex].x = mouseX - 100;
+    fragments[draggingIndex].y = mouseY - 25;
+  }
+}
+
+function mouseReleased() {
+  // Stop dragging
+  draggingIndex = null;
+}
+
+function checkOrder() {
+  // Define the correct positions for the fragments
+  let correctOrder = ["I never", "knew how much", "your presence", "shaped my life."];
+  let yPositions = fragments.map((frag) => frag.y);
+
+  // Sort fragments by their Y position to check order
+  let sortedFragments = fragments.slice().sort((a, b) => a.y - b.y);
+  for (let i = 0; i < correctOrder.length; i++) {
+    if (sortedFragments[i].text !== correctOrder[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
+
+
+
+
 
