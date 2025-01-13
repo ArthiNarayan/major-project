@@ -11,7 +11,7 @@ let state = "start";
 let time = "day";
 
 // Set image variables 
-let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira;
+let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home;
 
 let displayMode;
 let heartCount = 0;
@@ -48,6 +48,7 @@ function preload() {
   seashell = loadImage("seashell.png");
   chest = loadImage("chest.png");
   message = loadImage("message.png");
+  home = loadImage("home.png");
 }
 
 let choiceMade = false;  // Track if a choice has been made
@@ -170,6 +171,18 @@ function homeBase() {
   }
 }
 
+function homeIcon() {
+  if (state !== "home") {
+    // Display the home icon at the top-left corner
+    image(home, 0, 0, home.width * 0.15, home.height * 0.15);
+
+    // Check if the home icon is clicked
+    if (mouseIsPressed && mouseX > 0 && mouseX < 0 + home.width * 0.15 && mouseY > 0 && mouseY < 0 + home.height * 0.15) {
+      state = "home"; // Go back to the home base screen
+    }
+  }
+}
+
 function quests() {
   fill(50, 50, 50, 100);
   rect(50, 50, 360, 100, 10);
@@ -217,6 +230,8 @@ function quest1intro() {
       }
     }
   }
+  // Display the home icon
+  homeIcon();
 }
 
 function quest1() {
@@ -256,6 +271,8 @@ function quest1() {
       }
     }, 2000); // Delay before resetting or moving forward
   }
+  // Display the home icon
+  homeIcon();
 }
 
 function checkChoice() {
@@ -266,7 +283,7 @@ function checkChoice() {
       mouseY > 30 && mouseY < 30 + seashell.height * 0.4
     ) {
       choiceMade = true;
-      choiceFeedback = "The seashell is perfect! It'll remind my loved one of their first date at the beach. You've completed your quest! Now, click the home icon to go and finish your last quest. Farewell, traveller!";
+      choiceFeedback = "The seashell is perfect! It'll remind my loved one of our first date at the beach. You've completed your quest! Now, click the home icon to go and finish your last quest. Farewell, traveller!";
     } 
     // Check if the player clicks the treasure chest (wrong choice)
     else if (
