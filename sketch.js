@@ -11,7 +11,7 @@ let state = "start";
 let time = "day";
 
 // Set image variables 
-let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home, city, q2;
+let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home, city, q2, driving;
 
 let displayMode;
 
@@ -37,7 +37,7 @@ let showDialogueBox = true;
 let dialogue31 = "Welcome, kind soul. I am Melody, a musician who loved the city and its cherry blossoms.";
 let dialogue32 = "The city was where I performed my favourite songs, under the falling blossoms.";
 let dialogue33 = "Before I move on, I wish to leave a message for someone dear to me.";
-let dialogue34 = "Will you help me put together the words I never said?";
+let dialogue34 = "Will you help me put together the words I never said? Drag the words into a vertical formation";
 
 let fragments = [
   { text: "I never", x: 100, y: 200 },
@@ -67,6 +67,7 @@ function preload() {
   home = loadImage("home.png");
   city = loadImage("city.gif");
   q2 = loadImage("tree.png");
+  driving = loadImage("driving.gif");
 }
 
 let choiceMade = false;  // Track if a choice has been made
@@ -117,7 +118,9 @@ function swapState() {
   else if (state === "quest2") {
     quest2();
   }
-
+  else if (state === "end") {
+    end();
+  }
 }
 
 
@@ -400,9 +403,15 @@ function quest2() {
     fill(255);
     textSize(20);
     textAlign(LEFT, TOP);
-    text("You did it! The message is complete. Thank you!", 60, 460, 680, 90); // Display the feedback message
+    text("You did it! The message is complete. Thank you! Farewell, fellow kindred spirit.", 60, 460, 680, 90); // Display the feedback message
 
-    // Add logic to proceed to the next state or quest if needed
+    // Draw triangle button
+    drawTriangle(720, 520, 20);
+
+    // Check if the triangle button is clicked
+    if (mouseIsPressed && isTriangleClicked(720, 520, 20, mouseX, mouseY)) {
+      state = "end";
+    }
   }
 
   // Display the home icon
@@ -450,6 +459,30 @@ function checkOrder() {
     }
   }
   return true;
+}
+
+function end() {
+  image(driving, 0, 0, windowWidth, windowHeight);
+
+  // End dialogue
+  let endDialogue = "Now, as you drive into the horizon, know that the road ahead is filled with great things. May the stars guide your path, and may you always carry the memories of the souls you've touched. Until we meet again.";
+
+  // Display the typing dialogue
+  dialogueComplete = displayTypingDialogue(50, 450, 700, 100, endDialogue, frameCounter, typingSpeed);
+  if (!dialogueComplete) {
+    frameCounter++;
+  }
+  // Add any additional effects like fading out or transitioning to credits after the dialogue ends
+  if (dialogueComplete && mouseIsPressed && isTriangleClicked(720, 520, 20, mouseX, mouseY)) {
+    // Add logic to end the game or show credits
+    // For now, you can just reset the state to "start" or display a final message
+    state = "start"; // You can change this to show credits or restart the game
+  }
+
+  // Display the home icon (optional, if you want to let the player go back or see credits)
+  homeIcon();
+
+
 }
 
 
