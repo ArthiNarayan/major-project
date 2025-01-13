@@ -10,10 +10,12 @@
 let state = "start";
 let time = "day";
 
-// Set image variables 
-let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home, city, q2, driving;
+// Set image/music variables 
+let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home, city, q2, driving, music;
 
 let displayMode;
+
+let musicPlaying = false; // To track the music state
 
 
 // Home base dialogue
@@ -21,7 +23,7 @@ let frameCounter = 0;
 let typingSpeed = 0; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
-let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the CD player, or fuel up with a snack. Have fun!";
+let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe turn on the CD player. Have fun!";
 let dialogueComplete = false;
 let currentDialogue = dialogue11;
 
@@ -68,6 +70,9 @@ function preload() {
   city = loadImage("city.gif");
   q2 = loadImage("tree.png");
   driving = loadImage("driving.gif");
+
+  // Load music
+  music = loadSound("music.mp3");
 }
 
 let choiceMade = false;  // Track if a choice has been made
@@ -153,7 +158,12 @@ function displayTypingDialogue(x, y, width, height, dialogue, frameCounter, typi
   text(dialogue.substring(0, charIndex), x + 10, y + 10, width - 20, height - 20);
 
   // Draw triangle button
-  drawTriangle(x + width - 30, y + height - 30, 20);
+  //drawTriangle(x + width - 30, y + height - 30, 20);
+
+  // Draw triangle button only if not in the "end" state
+  if (state !== "end") {
+    drawTriangle(x + width - 30, y + height - 30, 20);
+  }
 
   return charIndex === dialogue.length;
 }
@@ -198,6 +208,18 @@ function homeBase() {
       } else if (currentDialogue === dialogue13) {
         showDialogueBox = false; // Hide the dialogue box after the last dialogue
       }
+    }
+  }
+
+  // Check if the CD image is clicked
+  if (mouseIsPressed && mouseX > 1170 && mouseX < 1170 + cd.width * 0.22 && mouseY > -14 && mouseY < -14 + cd.height * 0.22) {
+    userStartAudio();
+    if (musicPlaying) {
+      music.stop(); // Stop the music if it's currently playing
+      musicPlaying = false;
+    } else {
+      music.loop(); // Start the music and loop it
+      musicPlaying = true;
     }
   }
 
@@ -409,7 +431,7 @@ function quest2() {
     drawTriangle(720, 520, 20);
 
     // Check if the triangle button is clicked
-    if (mouseIsPressed && isTriangleClicked(720, 520, 20, mouseX, mouseY)) {
+    if (state === "quest2" && mouseIsPressed && isTriangleClicked(720, 520, 20, mouseX, mouseY)) {
       state = "end";
     }
   }
@@ -472,18 +494,12 @@ function end() {
   if (!dialogueComplete) {
     frameCounter++;
   }
-  // Add any additional effects like fading out or transitioning to credits after the dialogue ends
-  if (dialogueComplete && mouseIsPressed && isTriangleClicked(720, 520, 20, mouseX, mouseY)) {
-    // Add logic to end the game or show credits
-    // For now, you can just reset the state to "start" or display a final message
-    state = "start"; // You can change this to show credits or restart the game
-  }
 
-  // Display the home icon (optional, if you want to let the player go back or see credits)
-  homeIcon();
-
+  
 
 }
+
+
 
 
 

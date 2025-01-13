@@ -7,13 +7,10 @@ A game with a storyline where the player goes through quests (levels) to win the
 - start screen
 - storyline for game ending
 - home base (room) where player gets quest instructions
-    - has a cd icon where player can listen to playlists
-    - food icon where player can have snacks
-- at least 3 levels (quests)
+    - has a cd icon where player can play music
+- at least 2 levels (quests)
     - level one: kelp forest underwater where player picks special item
-    - level two: flying in the sky to deliver message to house on mountain
-    - level three: travelling to gateway of afterlife (river) which is underground
-- music/sound effects
+    - level two: city where players arranges message for spirit
 - character dialogue (text bubbles)
 
 
