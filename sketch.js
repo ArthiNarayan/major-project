@@ -18,7 +18,7 @@ let heartCount = 0;
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 0; 
+let typingSpeed = 3; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
 let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe check out your favorite playlist on the CD player, or fuel up with a snack. Have fun!";
@@ -32,6 +32,12 @@ let dialogue23 = "We walked along the shore, collecting seashells and talking ab
 let dialogue24 = "Now, I wish to send something back to remind them of that day. Can you help me choose the right item?";
 let currentQuestDialogue = dialogue21;
 let showDialogueBox = true;
+
+// Variables for Quest 2 dialogue
+let dialogue31 = "Welcome, kind soul. I am Melody, a musician who loved the city and its cherry blossoms.";
+let dialogue32 = "The city was where I performed my favourite songs, under the falling blossoms.";
+let dialogue33 = "Before I move on, I wish to leave a message for someone dear to me.";
+let dialogue34 = "Will you help me put together the words I never said?";
 
 function preload() {
   // Load all image files
@@ -219,6 +225,9 @@ function quests() {
   image(q2, 147, 80, q2.width * 0.048, q2.height * 0.048);
   if (mouseIsPressed && mouseX > 147 && mouseX < 147 + q1.width * 0.048 && mouseY > 80 && mouseY < 80 + q1.height * 0.048) {
     state = "quest2intro";
+    showDialogueBox = true; // Reset for the quest dialogues
+    currentQuestDialogue = dialogue31; // Ensure correct dialogue sequence starts
+    frameCounter = 0; // Reset typing
   }
 
 }
@@ -327,8 +336,46 @@ function checkChoice() {
   }
 }
 
-function quest2intro() {
-  // Set background image
-  image(city, 0, 0, windowWidth, windowHeight);
+// function quest2intro() {
+//   // Set background image
+//   image(city, 0, 0, windowWidth, windowHeight);
 
+// }
+
+// function quest2() {
+
+// }
+
+function quest2intro() {
+  image(city, 0, 0, windowWidth, windowHeight);
+  
+  if (showDialogueBox) {
+    dialogueComplete = displayTypingDialogue(50, 450, 700, 100, currentQuestDialogue, frameCounter, typingSpeed);
+    if (!dialogueComplete) {
+      frameCounter++;
+    }
+
+    if (
+      dialogueComplete &&
+      mouseIsPressed &&
+      isTriangleClicked(720, 520, 20, mouseX, mouseY)
+    ) {
+      if (currentQuestDialogue === dialogue31) {
+        currentQuestDialogue = dialogue32;
+        frameCounter = 0;
+      } else if (currentQuestDialogue === dialogue32) {
+        currentQuestDialogue = dialogue33;
+        frameCounter = 0;
+      } else if (currentQuestDialogue === dialogue33) {
+        currentQuestDialogue = dialogue34;
+        frameCounter = 0;
+      } else if (currentQuestDialogue === dialogue34) {
+        showDialogueBox = false; // Hide the dialogue box after the last dialogue
+        state = "quest2";
+      }
+    }
+  }
+  // Display the home icon
+  homeIcon();
 }
+
