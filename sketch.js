@@ -20,7 +20,7 @@ let musicPlaying = false; // To track the music state
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 0; 
+let typingSpeed = 3; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
 let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe turn on the CD player. Have fun!";
@@ -39,7 +39,7 @@ let showDialogueBox = true;
 let dialogue31 = "Welcome, kind soul. I am Melody, a musician who loved the city and its cherry blossoms.";
 let dialogue32 = "The city was where I performed my favourite songs, under the falling blossoms.";
 let dialogue33 = "Before I move on, I wish to leave a message for someone dear to me.";
-let dialogue34 = "Will you help me put together the words I never said? Drag the words into a vertical formation";
+let dialogue34 = "Will you help me put together the words I never said? Drag the words into a vertical formation.";
 
 let fragments = [
   { text: "I never", x: 100, y: 200 },
