@@ -11,7 +11,7 @@ let state = "start";
 let time = "day";
 
 // Set image/music variables 
-let nightStart, dayStart, play, room, book, cd, cake, q1, ocean, moira, seashell, chest, message, home, city, q2, driving, music;
+let nightStart, dayStart, play, room, book, cd, q1, ocean, moira, seashell, chest, message, home, city, q2, driving, music;
 
 let displayMode;
 
@@ -59,7 +59,6 @@ function preload() {
   room = loadImage("room.gif");
   book = loadImage("book.png");
   cd = loadImage("cd.png");
-  cake = loadImage("cake.png");
   q1 = loadImage("q1.jpg");
   ocean = loadImage("ocean.gif");
   moira = loadImage("moira.png");
@@ -188,8 +187,7 @@ function homeBase() {
   image(room, 0, 0, windowWidth, windowHeight);
   image(book, 9, 9, book.width * 0.12, book.height * 0.12);
   image(cd, 1170, -14, cd.width * 0.22, cd.height * 0.22);
-  image(cake, 1186, 67, cake.width * 0.17, cake.height * 0.17);
-
+  
   if (showDialogueBox) {
     dialogueComplete = displayTypingDialogue(50, 450, 700, 100, currentDialogue, frameCounter, typingSpeed);
     if (!dialogueComplete) {
