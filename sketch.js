@@ -20,7 +20,7 @@ let musicPlaying = false; // To track the music state
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 3; 
+let typingSpeed = 0; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
 let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe turn on the CD player. Have fun!";
@@ -31,7 +31,7 @@ let currentDialogue = dialogue11;
 let dialogue21 = "Hello, dear traveller. My name is Moira. I am a spirit who is journeying to the afterlife.";
 let dialogue22 = "The ocean holds a special place in my heart. It’s where my loved one and I shared our first date.";
 let dialogue23 = "We walked along the shore, collecting seashells and talking about all the adventures we’d have together.";
-let dialogue24 = "Now, I wish to send something back to remind them of that day. Can you help me choose the right item?";
+let dialogue24 = "I wish to send my loved one something back to remind them of our first date. Can you help me choose the right item?";
 let currentQuestDialogue = dialogue21;
 let showDialogueBox = true;
 
@@ -39,7 +39,7 @@ let showDialogueBox = true;
 let dialogue31 = "Welcome, kind soul. I am Melody, a musician who loved the city and its cherry blossoms.";
 let dialogue32 = "The city was where I performed my favourite songs, under the falling blossoms.";
 let dialogue33 = "Before I move on, I wish to leave a message for someone dear to me.";
-let dialogue34 = "Will you help me put together the words I never said? Drag the words into a vertical formation.";
+let dialogue34 = "Will you help me put together the words I wish I could've said? Drag the words into a vertical formation.";
 
 let fragments = [
   { text: "I never", x: 100, y: 200 },
@@ -83,7 +83,11 @@ function setup() {
   displayMode = createButton("NIGHT/DAY");
   displayMode.position(10, 10);
   displayMode.mousePressed(() => {
-    time = (time === "day") ? "night" : "day";
+    if (time === "day") {
+      time = "night";
+    } else {
+      time = "day";
+    }
   });
 }
 
@@ -194,16 +198,14 @@ function homeBase() {
       frameCounter++;
     }
 
-    if (
-      dialogueComplete &&
-      mouseIsPressed &&
-      isTriangleClicked(720, 520, 20, mouseX, mouseY)
-    ) {
+    if (dialogueComplete && mouseIsPressed && isTriangleClicked(720, 520, 20, mouseX, mouseY)) {
       if (currentDialogue === dialogue11) {
         nextDialogue(dialogue12);
-      } else if (currentDialogue === dialogue12) {
+      } 
+      else if (currentDialogue === dialogue12) {
         nextDialogue(dialogue13);
-      } else if (currentDialogue === dialogue13) {
+      } 
+      else if (currentDialogue === dialogue13) {
         showDialogueBox = false; // Hide the dialogue box after the last dialogue
       }
     }
@@ -343,26 +345,17 @@ function quest1() {
 function checkChoice() {
   if (mouseIsPressed && !choiceMade) {
     // Check if the player clicks the seashell
-    if (
-      mouseX > 270 && mouseX < 270 + seashell.width * 0.4 &&
-      mouseY > 30 && mouseY < 30 + seashell.height * 0.4
-    ) {
+    if (mouseX > 270 && mouseX < 270 + seashell.width * 0.4 && mouseY > 30 && mouseY < 30 + seashell.height * 0.4) {
       choiceMade = true;
       choiceFeedback = "The seashell is perfect! It'll remind my loved one of our first date at the beach. You've completed your quest! Now, click the home icon to go and finish your last quest. Farewell, traveller!";
     } 
     // Check if the player clicks the treasure chest (wrong choice)
-    else if (
-      mouseX > 150 && mouseX < 150 + chest.width * 0.6 &&
-      mouseY > 200 && mouseY < 200 + chest.height * 0.6
-    ) {
+    else if (mouseX > 150 && mouseX < 150 + chest.width * 0.6 && mouseY > 200 && mouseY < 200 + chest.height * 0.6) {
       choiceMade = true;
       choiceFeedback = "The treasure chest is a thoughtful gift, but it doesn’t hold the same memory. Try again!";
     } 
     // Check if the player clicks the message in a bottle (wrong choice)
-    else if (
-      mouseX > 500 && mouseX < 500 + message.width * 0.3 &&
-      mouseY > 200 && mouseY < 200 + message.height * 0.3
-    ) {
+    else if (mouseX > 500 && mouseX < 500 + message.width * 0.3 && mouseY > 200 && mouseY < 200 + message.height * 0.3) {
       choiceMade = true;
       choiceFeedback = "A message in a bottle is a nice gesture, but it’s not as meaningful. Try again!";
     }
