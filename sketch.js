@@ -20,7 +20,7 @@ let musicPlaying = false; // To track the music state
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 0; 
+let typingSpeed = 3.5; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
 let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe turn on the CD player. Have fun!";
