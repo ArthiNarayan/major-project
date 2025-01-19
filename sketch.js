@@ -13,7 +13,7 @@ let state = "start";
 let time = "day";
 
 // Set image/music variables 
-let nightStart, dayStart, play, room, book, q1, ocean, moira, seashell, chest, message, home, city, q2, driving;
+let nightStart, dayStart, play, room, book, q1, ocean, moira, seashell, chest, message, home, city, q2, stars;
 
 let displayMode;
 
@@ -53,6 +53,7 @@ let fragments = [
   { text: "shaped my life.", x: 500, y: 100 },
 ];
 let draggingIndex = null;
+let completedDialogue;
 
 
 
@@ -72,7 +73,7 @@ function preload() {
   home = loadImage("home.png");
   city = loadImage("city.gif");
   q2 = loadImage("tree.png");
-  driving = loadImage("driving.gif");
+  stars = loadImage("stars.gif");
 
   // Load music
   music = loadSound("music.mp3");
@@ -419,12 +420,13 @@ function quest2() {
 
   // Check if the fragments are correctly ordered inside the box
   if (checkOrder(boxX, boxY, boxWidth, boxHeight)) {
-    fill(50, 50, 50, 200);
-    rect(50, 450, 700, 100, 10); // Background for feedback box
-    fill(255);
-    textSize(20);
-    textAlign(LEFT, TOP);
-    text("You did it! The message is complete. Thank you! Farewell, fellow kindred spirit.", 60, 460, 680, 90); // Display the feedback message
+    // End dialogue
+    let completedDialogue = "You did it! The message is complete. Thank you! Farewell, fellow kindred spirit.";
+    // Display the typing dialogue
+    dialogueComplete = displayTypingDialogue(50, 450, 700, 100, completedDialogue, frameCounter, typingSpeed);
+    if (!dialogueComplete) {
+      frameCounter++;
+    }
 
     drawTriangle(720, 520, 20); // Triangle button
     if (state === "quest2" && mouseIsPressed && isTriangleClicked(720, 520, 20, mouseX, mouseY)) {
@@ -487,10 +489,10 @@ function checkOrder(boxX, boxY, boxWidth, boxHeight) {
 }
 
 function end() {
-  image(driving, 0, 0, windowWidth, windowHeight);
+  image(stars, 0, 0, windowWidth, windowHeight);
 
   // End dialogue
-  let endDialogue = "Now, as you drive into the horizon, know that the road ahead is filled with great things. May the stars guide your path, and may you always carry the memories of the souls you've touched. Until we meet again.";
+  let endDialogue = "Congratulations, traveller! Thanks to your help, the spirits have peacefully travelled to the afterlife and become one with the stars to watch over their loved ones. Farewell!";
 
   // Display the typing dialogue
   dialogueComplete = displayTypingDialogue(50, 450, 700, 100, endDialogue, frameCounter, typingSpeed);
@@ -520,23 +522,3 @@ function muteTrack() {
     trackOn = true;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
