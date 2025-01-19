@@ -25,10 +25,10 @@ let music;
 
 // Home base dialogue
 let frameCounter = 0;
-let typingSpeed = 0; 
+let typingSpeed = 2.5; 
 let dialogue11 = "Hey there! Welcome to your cozy little corner of the world. This is your home base—a place where you can relax and get ready for your next adventure.";
 let dialogue12 = "The world is your oyster, there are spirits to help, challenges to overcome, and mysteries to uncover.";
-let dialogue13 = "To get started, click on the book icon at the top left. But before you do, take a moment to explore the room. Maybe turn on the CD player. Have fun!";
+let dialogue13 = "To get started, click on the book icon at the top left. Have fun!";
 let dialogueComplete = false;
 let currentDialogue = dialogue11;
 
@@ -42,9 +42,8 @@ let showDialogueBox = true;
 
 // Variables for Quest 2 dialogue
 let dialogue31 = "Welcome, kind soul. I am Melody, a musician who loved the city and its cherry blossoms.";
-let dialogue32 = "The city was where I performed my favourite songs, under the falling blossoms.";
-let dialogue33 = "Before I move on, I wish to leave a message for someone dear to me.";
-let dialogue34 = "Will you help me put together the words I wish I could've said? Drag the words into a vertical formation.";
+let dialogue32 = "Before I move on, I wish to leave a message for someone dear to me.";
+let dialogue33 = "Will you help me put together the words I wish I could've said? Drag the phrases into a vertical formation in the box.";
 
 let fragments = [
   { text: "I never", x: 100, y: 200 },
@@ -238,6 +237,7 @@ function homeIcon() {
     // Check if the home icon is clicked
     if (mouseIsPressed && mouseX > 0 && mouseX < 0 + home.width * 0.15 && mouseY > 0 && mouseY < 0 + home.height * 0.15) {
       state = "home"; // Go back to the home base screen
+      showDialogueBox = false; // Ensure the home screen is blank with no dialogue
     }
   }
 }
@@ -331,7 +331,7 @@ function quest1() {
     feedbackTimer++;
     
     // Once feedback timer exceeds a threshold, reset
-    if (feedbackTimer > 20) { // 210 frames = ~7 seconds at 30 FPS
+    if (feedbackTimer > 27) { 
       if (choiceFeedback.includes("Try again")) {
         choiceMade = false;
         choiceFeedback = ""; // Clear the feedback so the player can try again
@@ -389,12 +389,9 @@ function quest2intro() {
         currentQuestDialogue = dialogue33;
         frameCounter = 0;
       } else if (currentQuestDialogue === dialogue33) {
-        currentQuestDialogue = dialogue34;
-        frameCounter = 0;
-      } else if (currentQuestDialogue === dialogue34) {
         showDialogueBox = false; // Hide the dialogue box after the last dialogue
         state = "quest2";
-      }
+      } 
     }
   }
   // Display the home icon
@@ -428,7 +425,7 @@ function quest2() {
 
   // Check if the fragments are correctly ordered inside the box
   if (checkOrder(boxX, boxY, boxWidth, boxHeight)) {
-    // End dialogue
+    // Completed dialogue
     let completedDialogue = "You did it! The message is complete. Thank you! Farewell, fellow kindred spirit.";
     // Display the typing dialogue
     dialogueComplete = displayTypingDialogue(50, 450, 700, 100, completedDialogue, frameCounter, typingSpeed);
@@ -500,7 +497,7 @@ function end() {
   image(stars, 0, 0, windowWidth, windowHeight);
 
   // End dialogue
-  let endDialogue = "Congratulations, traveller! Thanks to your help, the spirits have peacefully travelled to the afterlife and become one with the stars to watch over their loved ones. Farewell!";
+  let endDialogue = "Welcome back home! Thanks to your help, the spirits have peacefully travelled to the afterlife and become one with the stars to watch over their loved ones. Till your next adventure.";
 
   // Display the typing dialogue
   dialogueComplete = displayTypingDialogue(50, 450, 700, 100, endDialogue, frameCounter, typingSpeed);
