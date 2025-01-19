@@ -56,7 +56,6 @@ let draggingIndex = null;
 let completedDialogue;
 
 
-
 function preload() {
   // Load all image files
   nightStart = loadImage("nightstart.gif");
@@ -150,6 +149,12 @@ function startScreen() {
   }
 
   image(play, 455, 230, play.width * 0.5, play.height * 0.5);
+
+  // Display a message to resize the window
+  fill(255);
+  textSize(18);
+  textAlign(CENTER, CENTER);
+  text("For the best experience, resize the window to 1280 x 621 pixels.", width / 2, height - 50);
 
   // If user clicks play button, screen will switch to instructions 
   if (mouseIsPressed && mouseX > 455 && mouseX < 455 + play.width * 0.5 && mouseY > 230 && mouseY < 230 + play.height * 0.5) {
@@ -298,6 +303,8 @@ function quest1intro() {
   homeIcon();
 }
 
+let feedbackTimer = 0; // Timer for feedback duration
+
 function quest1() {
   // Set background image
   image(ocean, 0, 0, windowWidth, windowHeight);
@@ -319,22 +326,23 @@ function quest1() {
     textSize(20);
     textAlign(LEFT, TOP);
     text(choiceFeedback, 60, 460, 680, 90); // Display the feedback message
-  }
 
-  // Once a choice is made, you can advance the game or trigger the next dialogue
-  if (choiceMade) {
-    // Delay to let the player read the feedback before proceeding
-    setTimeout(() => {
+    // Increment the timer
+    feedbackTimer++;
+    
+    // Once feedback timer exceeds a threshold, reset
+    if (feedbackTimer > 20) { // 210 frames = ~7 seconds at 30 FPS
       if (choiceFeedback.includes("Try again")) {
-        // If wrong choice is made, reset choice and feedback
         choiceMade = false;
         choiceFeedback = ""; // Clear the feedback so the player can try again
       } else {
         showDialogueBox = true; // Proceed with the next dialogue
-        nextDialogue("Thank you for helping! The seashell is the perfect choice."); // Example feedback message
+        nextDialogue("Thank you for helping! The seashell is the perfect choice.");
       }
-    }, 2000); // Delay before resetting or moving forward
+      feedbackTimer = 0; // Reset the timer after the feedback
+    }
   }
+  
   // Display the home icon
   homeIcon();
 }
@@ -522,3 +530,4 @@ function muteTrack() {
     trackOn = true;
   }
 }
+
